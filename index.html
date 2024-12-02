@@ -13,23 +13,62 @@
     
     <section class="section-main">
 
+        <div class="container-form">
+            <h3>Nueva Palabra</h3>
+
+            <input type="text" id="input-new-word" placeholder="Nueva Palabra">
+
+            <div class="radio-group">
+                <label for="ingles">Inglés</label>
+                <input type="radio" id="english" name="idiom" value="ingles">
+                <label for="español">Español</label>
+                <input type="radio" id="spanish" name="idiom" value="español">
+            </div>
+
+            <input type="text" id="input-new-word" placeholder="Nueva Palabra">
+            
+            <div class="categories-form">
+
+                <h3>Categorías</h3>
+
+                <div class="radio-group">
+                    <label for="animales">Animales</label>
+                    <input type="radio" id="animales" name="categorie" value="animals">
+                    <label for="frutas">Frutas</label>
+                    <input type="radio" id="frutas" name="categorie" value="fruits">
+                    <label for="colores">Colores</label>
+                    <input type="radio" id="colores" name="categorie" value="colors">
+                    <label for="descripciones">Descripciones</label>
+                    <input type="radio" id="descripciones" name="categorie" value="physical_descriptions">
+                    <label for="habilidades">Habilidades</label>
+                    <input type="radio" id="habilidades" name="categorie" value="skills">
+                    <label for="verbos">Verbos</label>
+                    <input type="radio" id="verbos" name="categorie" value="verbs">
+                </div>
+
+                <button class="button">Agregar Palabra</button>
+
+            </div>
+            
+        </div>
+
         <div class="container-main">
 
             <div class="container-word">
                 <p>Palabra/word</p>
-                <input type="text" placeholder="Palabra">
+                <input type="text" id="input-word" placeholder="Palabra">
             </div>
 
             <div class="radio-group">
                 <label for="ingles">Inglés</label>
-                <input type="radio" id="ingles" name="idioma" value="ingles">
+                <input type="radio" id="english" name="idiom" value="ingles">
                 <label for="español">Español</label>
-                <input type="radio" id="español" name="idioma" value="español" checked>
+                <input type="radio" id="spanish" name="idiom" value="español">
             </div>
 
             <div class="input-group">
-                <button class="button">Traducir/Translate</button>
-                <input type="text" id="respuesta" placeholder="response/respuesta">
+                <button id="translatebtn" class="button">Traducir/Translate</button>
+                <input type="text" id="answer" placeholder="response/respuesta">
             </div>
 
             <div class="categories">
@@ -37,28 +76,36 @@
                 <h2>Categorías</h2>
 
                 <div class="radio-group">
-                  <label for="animales">Animales</label>
-                  <input type="radio" id="animales" name="categorie" value="animales">
-                  <label for="frutas">Frutas</label>
-                  <input type="radio" id="frutas" name="categorie" value="frutas">
-                  <label for="colores">Colores</label>
-                  <input type="radio" id="colores" name="categorie" value="colores">
-                  <label for="descripciones">Descripciones</label>
-                  <input type="radio" id="descripciones" name="categorie" value="descripciones">
-                  <label for="habilidades">Habilidades</label>
-                  <input type="radio" id="habilidades" name="categorie" value="habilidades">
-                  <label for="verbos">Verbos</label>
-                  <input type="radio" id="verbos" name="categorie" value="verbos">
+                    <label for="animales">Animales</label>
+                    <input type="radio" id="animales" name="categorie" value="animals">
+                    <label for="frutas">Frutas</label>
+                    <input type="radio" id="frutas" name="categorie" value="fruits">
+                    <label for="colores">Colores</label>
+                    <input type="radio" id="colores" name="categorie" value="colors">
+                    <label for="descripciones">Descripciones</label>
+                    <input type="radio" id="descripciones" name="categorie" value="physical_descriptions">
+                    <label for="habilidades">Habilidades</label>
+                    <input type="radio" id="habilidades" name="categorie" value="skills">
+                    <label for="verbos">Verbos</label>
+                    <input type="radio" id="verbos" name="categorie" value="verbs">
                 </div>
 
                 <div class="input-group">
-                    <input class="input2" type="text" id="respuesta" placeholder="Aqui irán la lista de palabras">
+                    <input class="input2" type="text" id="answer2" placeholder="Aquí irán la lista de palabras">
                     <button class="button">Nueva Palabra</button>
                 </div>
+            </div>
+        </div>
+        <div class="container-dictionary">
+            <h3>Diccionario</h3>
+            <div class="dictionary-words">
 
             </div>
             
+
         </div>
     </section>
 </body>
+<script type="module" src="app.js"></script>
+<script type="module" src="dictionary.js"></script>
 </html>
