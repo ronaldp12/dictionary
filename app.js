@@ -4,7 +4,9 @@ const inputWord = document.getElementById('input-word');
 const buttonTranslate = document.getElementById('translatebtn');
 const answer = document.getElementById('answer');
 const categoryRadios = document.querySelectorAll('input[name="categorie"]');
-const respuesta = document.getElementById('answer2');
+const answer2 = document.getElementById('answer2');
+const diccionarioContainer = document.getElementById('diccionarioContainer');
+const orderLanguageRadios = document.querySelectorAll('input[name="orderLanguage"]');
 
 
 buttonTranslate.addEventListener('click', () => {
@@ -18,7 +20,6 @@ buttonTranslate.addEventListener('click', () => {
         answer.value = 'Por favor, ingresa una palabra';
     }
 });
-
 
 
 function translateWord(word, language) {
@@ -42,6 +43,22 @@ function translateWord(word, language) {
 }
 
 
+function showCategoryWords(category) {
+    const words = dictionary.categories[category];
+    if (words) {
+        const spanishWords = words.map(word => word.spanish);
+        answer2.value = spanishWords.join(', ');
+    } else {
+        answer2.value = 'Categoría no encontrada';
+    }
+}
+
+categoryRadios.forEach(radio => {
+    radio.addEventListener('change', () => {
+        const selectedCategory = document.querySelector('input[name="categorie"]:checked').value;
+        showCategoryWords(selectedCategory);
+    });
+});
 
 
 
