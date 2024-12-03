@@ -8,6 +8,12 @@ const answer2 = document.getElementById('answer2');
 const diccionarioContainer = document.getElementById('diccionarioContainer');
 const orderLanguageRadios = document.querySelectorAll('input[name="orderLanguage"]');
 
+const inputNewWordEnglish = document.getElementById('input-new-word');
+const inputNewWordSpanish = document.getElementById('input-new-word-spanish');
+const inputExample = document.getElementById('example-input');
+const categoryRadiosForm = document.querySelectorAll('input[name="categorie-form"]');
+const buttonAddWord = document.querySelector('.button');
+
 
 buttonTranslate.addEventListener('click', () => {
     const word = inputWord.value.trim();
@@ -60,6 +66,51 @@ categoryRadios.forEach(radio => {
     });
 });
 
+
+
+function renderDictionary(isSorted = false) {
+    const selectedOrderLanguage = document.querySelector('input[name="orderLanguage"]:checked')?.value;
+
+    
+    while (diccionarioContainer.firstChild) {
+        diccionarioContainer.removeChild(diccionarioContainer.firstChild);
+    }
+
+    const ul = document.createElement('ul');
+    ul.style.listStyleType = 'none';
+
+    
+    let allWords = Object.values(dictionary.categories).flat();
+
+   
+    if (isSorted && selectedOrderLanguage) {
+        allWords.sort((a, b) => {
+            const wordA = a[selectedOrderLanguage].toLowerCase();
+            const wordB = b[selectedOrderLanguage].toLowerCase();
+            return wordA.localeCompare(wordB);
+        });
+    }
+
+    
+    allWords.forEach(word => {
+        const li = document.createElement('li');
+        li.textContent = `${word.english} -> ${word.spanish} (Ejemplo: ${word.example})`;
+        ul.appendChild(li);
+    });
+
+    
+    diccionarioContainer.appendChild(ul);
+}
+
+
+orderLanguageRadios.forEach(radio => {
+    radio.addEventListener('change', () => {
+        renderDictionary(true);
+    });
+});
+
+
+renderDictionary();
 
 
 
