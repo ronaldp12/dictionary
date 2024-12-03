@@ -112,39 +112,54 @@ orderLanguageRadios.forEach(radio => {
 
 renderDictionary();
 
+function generateUniqueId(category) {
+    const categoryWords = dictionary.categories[category];
+    if (!categoryWords || categoryWords.length === 0) {
+        return 1; 
+    }
+    
+    const maxId = Math.max(...categoryWords.map(word => word.id));
+    return maxId + 1;
+}
 
+buttonAddWord.addEventListener('click', () => {
+    const englishWord = inputNewWordEnglish.value.trim();
+    const spanishWord = inputNewWordSpanish.value.trim();
+    const example = inputExample.value.trim();
+    
+    if (!englishWord || !spanishWord || !example) {
+        alert('Por favor, completa todos los campos');
+        return;
+    }
 
-// const person2 = ['Edwin','Rozo', 37]
-// console.log(person2)
+    let selectedCategory;
+    categoryRadiosForm.forEach(radio => {
+        if (radio.checked) {
+            selectedCategory = radio.value;
+        }
+    });
 
+    if (!selectedCategory) {
+        alert('Por favor, selecciona una categoría');
+        return;
+    }
 
-// // Destructuring
-// const { name, lastname } = person1
+    const newId = generateUniqueId(selectedCategory);
 
-// const [value1, value3] = person2
+    const newWord = {
+        id: newId,
+        english: englishWord,
+        spanish: spanishWord,
+        example: example
+    };
 
-// const fichaAdso = [
-//   { name: 'Eusebio', rol: 'Backend' },
-//   { name: 'Sofia', rol: 'Backend' },
-//   { name: 'Andres', rol: 'Backend' },
-//   { name: 'Andrea', rol: 'Backend' }  
-// ]
+    dictionary.categories[selectedCategory].push(newWord);
 
-// const names = fichaAdso.filter(item => item.name.charAt(0) === 'A')
-// console.log(names)
+    inputNewWordEnglish.value = '';
+    inputNewWordSpanish.value = '';
+    inputExample.value = '';
 
-//console.log(Object.keys(person1))
-//console.log(Object.values(person1))
-//console.log(Object.entries(person1))
+    alert('Nueva palabra agregada con éxito');
 
-//for (const key in object) {
-//  if (Object.prototype.hasOwnProperty.call(object, key)) {
-//    const element = object[key];
-//    
-//  }
-//}
-
-//for (const element of object) {
-  
-//}
-
+    renderDictionary();
+});
